@@ -1,0 +1,114 @@
+@font-face {
+  font-family: 'CoFo Sans Lamoda';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url(https://a.lmcdn.ru/static/permanent/fonts/CoFoSansLamoda-Regular.woff2) format('woff2'),
+    url(https://a.lmcdn.ru/static/permanent/fonts/CoFoSansLamoda-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'CoFo Sans Lamoda';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url(https://a.lmcdn.ru/static/permanent/fonts/CoFoSansLamoda-Regular.woff2) format('woff2'),
+    url(https://a.lmcdn.ru/static/permanent/fonts/CoFoSansLamoda-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'CoFo Sans Lamoda';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    url(https://a.lmcdn.ru/static/permanent/fonts/CoFoSansLamoda-Bold.woff2) format('woff2'),
+    url(https://a.lmcdn.ru/static/permanent/fonts/CoFoSansLamoda-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'CoFo Sans Lamoda';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url(https://a.lmcdn.ru/static/permanent/fonts/CoFoSansLamoda-Bold.woff2) format('woff2'),
+    url(https://a.lmcdn.ru/static/permanent/fonts/CoFoSansLamoda-Bold.woff) format('woff');
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.base-input .v-field {
+  border-radius: 4px !important;
+}
+
+.base-input .v-field__outline {
+  display: none !important;
+}
+
+.base-table {
+  border-width: 1px;
+  border-style: solid;
+  // border-color: rgb(var(--v-theme-link));
+  border-color: #E5E5E5;
+}
+
+.base-icon {
+  width: 56px !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#__nuxt {
+  overflow-x: auto;
+}
+
+.base-select .v-label {
+  opacity: 1 !important;
+}
+
+.base-chip-group {
+  padding: 0 !important;
+}
+
+.base-checkbox .v-selection-control__input,
+.base-checkbox .v-selection-control__wrapper {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.base-checkbox .v-selection-control {
+  min-height: 20px !important;
+}
+
+.font-size-h1 {
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.font-size-h2 {
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.font-size-body-1 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.font-size-body-3 {
+  font-size: 13px;
+  line-height: 16px;
+}

@@ -1,0 +1,6 @@
+version: 1.4.0
+project: neurocapsule
+name: neurocapsule
+app-type: server
+storages:
+    - postgres

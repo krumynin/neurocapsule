@@ -1,0 +1,10 @@
+project: neurocapsule
+services:
+  neurocapsule:
+    generate:
+      goswagger:
+        - type: server
+          name: server
+          spec: "specs/server.yaml" 
+          target: "app/scratch/generated/server"
+          nullable: strict

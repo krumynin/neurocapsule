@@ -1,0 +1,201 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Neurocapsule
+  description: Neurocapsule
+  x-rpc-codec: jsonrpc2
+host: neurocapsule.services.lamoda.tech
+basePath: /jsonrpc/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+
+  /neurocapsule.get:
+    get:
+      description: Get a neurocapsule based on body parameters
+      operationId: neurocapsule.get
+      parameters:
+        - $ref: "#/parameters/jsonrpc"
+        - $ref: "#/parameters/jsonrpc_id"
+        - $ref: '#/parameters/price_segment'
+        - $ref: '#/parameters/color_scheme'
+        - $ref: '#/parameters/color_base'
+        - $ref: '#/parameters/excluded_sku_list'
+      responses:
+        200:
+          description: 'Neurocapsule based on body parameters'
+          schema:
+            allOf:
+              - $ref: "#/definitions/BaseResponse"
+              - type: object
+                properties:
+                  result:
+                    $ref: '#/definitions/NeurocapsuleResponse'
+
+definitions:
+  BaseResponse:
+    type: object
+    required:
+      - jsonrpc
+      - id
+    properties:
+      jsonrpc:
+        type: string
+      id:
+        type: string
+      error:
+        $ref: '#/definitions/Error'
+
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        x-nullable: false
+      message:
+        type: string
+        description: Human readable error description for debug usage
+        x-nullable: false
+      data:
+        type: object
+        description: Arbitary additional error-related data
+
+  NeurocapsuleResponse:
+    type: object
+    x-nullable: false
+    required:
+      - neurocapsule
+    properties:
+      neurocapsule:
+        type: object
+        required:
+          - bottom
+          - top1
+          - top2
+        properties:
+          bottom:
+            type: object
+            required:
+              - trousers
+              - jeans
+              - sweatpants
+            properties:
+              trousers:
+                $ref: '#/definitions/Product'
+              jeans:
+                $ref: '#/definitions/Product'
+              sweatpants:
+                $ref: '#/definitions/Product'
+          top1:
+            type: object
+            required:
+              - shirt1
+              - shirt2
+              - tShirt1
+              - tShirt2
+            properties:
+              shirt1:
+                $ref: '#/definitions/Product'
+              shirt2:
+                $ref: '#/definitions/Product'
+              tShirt1:
+                $ref: '#/definitions/Product'
+              tShirt2:
+                $ref: '#/definitions/Product'
+          top2:
+            type: object
+            required:
+              - hoodie
+              - sweater
+              - blazer
+            properties:
+              hoodie:
+                $ref: '#/definitions/Product'
+              sweater:
+                $ref: '#/definitions/Product'
+              blazer:
+                $ref: '#/definitions/Product'
+
+  Product:
+    type: object
+    required:
+      - sku
+      - name
+      - price_amount
+      - thumbnail
+      - gallery
+      - color
+    properties:
+      sku:
+        type: string
+        x-nullable: false
+      full_sku:
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      price_amount:
+        type: integer
+        x-nullable: false
+      thumbnail:
+        type: string
+        x-nullable: false
+      gallery:
+        type: string
+        x-nullable: false
+      color:
+        type: string
+        x-nullable: false
+
+parameters:
+  jsonrpc_id:
+    name: id
+    in: query
+    required: true
+    type: string
+  jsonrpc:
+    name: jsonrpc
+    in: query
+    required: true
+    type: string
+  price_segment:
+    name: price_segment
+    in: query
+    required: true
+    type: string
+    enum:
+      - low
+      - middle
+      - high
+  color_scheme:
+    name: color_scheme
+    in: query
+    required: true
+    type: string
+    enum:
+      - contrast
+      - monochrome
+      - classic
+  color_base:
+    name: color_base
+    in: query
+    required: true
+    type: string
+    enum:
+      - brown
+      - khaki
+      - darkBlue
+      - blackWhite
+  excluded_sku_list:
+    name: excluded_sku_list
+    in: query
+    description: 'Comma-separated list of values sku: QE456EMBT231,MP002XM4F7C9,MP002XM101FC'
+    type: string

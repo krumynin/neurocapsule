@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  neurocapsule-app:
+    container_name: neurocapsule-app
+    build:
+      context: ../
+      target: ci
+      dockerfile: deployments/Dockerfile
+      args:
+        - BASE_VERSION
+    image: neurocapsule.docker.lamoda.ru/neurocapsule-app
+    ports:
+      - "8080:8080"
+      - "53000:53000"
+    env_file:
+      - compose.dev.env
+    volumes:
+      - "..:/app"
+    command: "go run main.go application"
+    profiles:
+      - app
+
+  neurocapsule-migrate:
+    container_name: neurocapsule-migrate
+    image: "migrate/migrate:v4.13.0"
+    env_file:
+      - compose.dev.env
+    restart: on-failure
+    volumes:
+      - "../migrations:/migrations"
+    command:
+      [
+        "-path",
+        "/migrations/",
+        "-database",
+        "postgres://krumynin:@host.docker.internal:5432/neurocapsule?sslmode=disable",
+        "up"
+      ]
+    profiles:
+      - app
+      - dependencies
